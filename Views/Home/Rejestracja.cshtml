@@ -1,0 +1,68 @@
+﻿@model RejestracjaModel
+
+<h2 style="text-align: center;">Rejestracja</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success text-center">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-action="Rejestracja" method="post" class="rejestracja-form">
+    <div class="form-group">
+        <label asp-for="Imie"></label>
+        <input asp-for="Imie" class="form-control" />
+        <span asp-validation-for="Imie" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nazwisko"></label>
+        <input asp-for="Nazwisko" class="form-control" />
+        <span asp-validation-for="Nazwisko" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Haslo"></label>
+        <input asp-for="Haslo" type="password" class="form-control" />
+        <span asp-validation-for="Haslo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PotwierdzenieHasla"></label>
+        <input asp-for="PotwierdzenieHasla" type="password" class="form-control" />
+        <span asp-validation-for="PotwierdzenieHasla" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NrTelefonu"></label>
+        <input asp-for="NrTelefonu" type="tel" class="form-control" />
+        <span asp-validation-for="NrTelefonu" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Wiek"></label>
+        <input asp-for="Wiek" type="number" class="form-control" />
+        <span asp-validation-for="Wiek" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Miasto"></label>
+        <select asp-for="Miasto" asp-items="Html.GetEnumSelectList<Rejestracja.Models.RejestracjaModel.Kategorie>()" class="form-control">
+            <option value="">Wybierz miasto...</option>
+        </select>
+        <span asp-validation-for="Miasto" class="text-danger"></span>
+    </div>
+    <div class="button-container">
+        <input type="submit" id="submitButton" value="Zarejestruj" class="btn btn-primary" />
+        <button type="reset" id="resetButton" class="btn btn-secondary">Wyczyść</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
